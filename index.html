@@ -6,30 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-------- title ----------->
-    <title>Online Book Shop || Web Designer Max</title>
+    <title>Weebshit General</title>
 
-    <!-------- customer style link ----------->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./style.css">
 
-
-    <!-------- font awesome cdn link --------->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
-
-    <!------- swipper cdn link ------------>
+    <!-- Slider Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script defer src="./js/script.js"></script>
+
 </head>
 
 <body ng-controller="myController">
-    <!--------- header section start ------------>
-    <header class="header">
-
-        <div class="header-1">
-
-            <a href="" class="logo"><i class="fas fa-book"> bookly</i></a>
+    <!-- Header & Navbar -->
+    <header>
+        <div class="searchbar">
+            <a href="#">
+                <div class="logo"><img src="./assets/logo.svg" alt="Logo"></div>
+                <div class="website-name">Weebshit General</div>
+            </a>
 
             <form action="" class="search-form">
                 <input type="search" name="" placeholder="search here..." id="search-box">
@@ -42,107 +46,36 @@
                 <a href="" class="fas fa-shopping-cart"></a>
                 <div id="login-btn" class="fas fa-user"></div>
             </div>
-
         </div>
 
-        <div class="header-2">
-
-            <div class="navbar">
-                <a href="#home">home</a>
-                <a href="#featured">featured</a>
-                <a href="#arrivals">arrivals</a>
-                <a href="#reviews">reviews</a>
-                <a href="#blogs">blogs</a>
-            </div>
-
+        <div class="navbar">
+            <a href="#home">Home</a>
+            <a href="#featured">Featured</a>
+            <a href="#arrivals">New Arrivals</a>
         </div>
-
     </header>
 
-    <!--------- header section ends ------------>
-
-    <!--------- bottom navbar  ------------>
-
-    <div class="bottom-navbar">
-        <a href="#home" class="fas fa-home"></a>
-        <a href="#featured" class="fas fa-list"></a>
-        <a href="#arrivals" class="fas fa-tags"></a>
-        <a href="#reviews" class="fas fa-comments"></a>
-        <a href="#blogs" class="fas fa-app-store"></a>
-    </div>
-
-
-    <!-------- bottom navbar start ----------->
-
-    <div class="bottom-navbar">
-        <a href="#home" class="fas fa-home"></a>
-        <a href="#featured" class="fas fa-list"></a>
-        <a href="#arrivals" class="fas fa-tags"></a>
-        <a href="#reviews" class="fas fa-comments"></a>
-        <a href="#blogs" class="fas fa-app-store"></a>
-    </div>
-
-
-    <!-------- bottom navbar ends ----------->
-
-    <!-------- login form start ----------->
-
-
-    <div class="login-form-container">
-
-        <div id="close-login-btn" class="fas fa-times"></div>
-
-        <form action="">
-            <h3>sign in</h3>
-            <span>email</span>
-            <input type="email" name="" class="box" placeholder="enter your email">
-            <span>password</span>
-            <input type="password" name="" class="box" placeholder="enter your password">
-
-            <div class="check-box">
-                <input type="checkbox" id="remember-me">
-                <label for="remember-me">remember me</label>
-            </div>
-            <input type="submit" value="sign in" class="btn">
-            <p>forgot password ? <a href="">click here</a></p>
-            <p>don't have an account ? <a href="">create one</a></p>
-        </form>
-    </div>
-
-    <!-------- login form ends ----------->
-
-
-    <!-------- home section start ----------->
-
-    <section class="home" id="home">
-
-        <div class="row">
-
+    <!-- Home -->
+    <section class="home">
             <div class="content">
-                <h3>upto 55% offers</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente eos quisquam voluptatibus,
-                    cum quod.</p>
-                <a href="" class="btn">shop now</a>
+                <h3>Up to 69% offers</h3>
+                <p>First off, systemd is not an init system, it has an init system as part of the systemd suite. systemd is a project to build a standardised lowlevel userland for Linux.</p>
+                <a href="#arrivals" class="btn">shop now</a>
             </div>
 
             <div class="swiper books-list">
-
                 <div class="swiper-wrapper">
-                    <a href="" class="swiper-slide"><img src="./image/book-1.png" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./image/book-2.png" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./image/book-3.png" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./image/book-4.png" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./image/book-5.png" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./image/book-6.png" alt=""></a>
+                    <!-- Pick 6 random mangas? -->
+                    <a href="" class="swiper-slide"><img src="./assets/manga/goodbyeEri.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon1.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/annarasumanara1.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/stargazingDog2.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/uzumaki3.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon2.jpg" alt=""></a>
+                    <a href="" class="swiper-slide"><img src="./assets/manga/ghost2.jpg" alt=""></a>
                 </div>
-
                 <img src="./image/stand.png" class="stand" alt="">
-
             </div>
-
-
-        </div>
-
     </section>
 
     <!-------- home section ends  ----------->
@@ -615,8 +548,8 @@
             <h3>deal of the day</h3>
             <h1>upto 50% offers</h1>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, vero. Voluptatibus voluptates inventore
-                nulla vel.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, vero. Voluptatibus voluptates inventore
+            nulla vel.
             </p>
             <a href="" class="btn">shop now</a>
         </div>
@@ -632,141 +565,12 @@
 
     <!-------- deal section ends  ----------->
 
-
-    <!-------- review section start  ----------->
-
-    <section class="reviews" id="reviews">
-
-        <h1 class="heading"><span>client's reviews</span></h1>
-
-        <div class="swiper reviews-slider">
-
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <img src="./image/pic-1.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./image/pic-2.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./image/pic-3.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./image/pic-4.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./image/pic-5.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <img src="./image/pic-6.png" alt="">
-                    <h3>john deo</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque eligendi amet recusandae
-                        perferendis cumque nesciunt.
-                    </p>
-
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-------- review section ends  ----------->
-
-    <!-------- footer section start  ----------->
-
-    <footer class="footer">
-
-        <div class="credit">create by <span>web max designer</span> | all rights reserved</div>
-
+    <footer>
+        Created by <i>Ngelag</i> | UAS Front-End
     </footer>
-
-    <!-------- footer section ends  ----------->
-
 
 
     <!---- swiper cdn link ---------->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-
-    <!------- script link --------->
-    <script src="./js/script.js"></script>
 
 </body>
 
