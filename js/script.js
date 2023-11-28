@@ -1,173 +1,163 @@
-/*------- search button ----------- */
+angular.module('myApp', [])
+  .controller('myController', ['$scope', function ($scope) {
 
-searchform = document.querySelector('.search-form');
+    /*------- search button ----------- */
+    $scope.searchform = document.querySelector('.search-form');
 
-document.querySelector('#search-btn').onclick = () =>{
-    searchform.classList.toggle('active');
-}
+    $scope.toggleSearchForm = function () {
+      $scope.searchform.classList.toggle('active');
+    };
 
+    window.onscroll = function () {
+      $scope.searchform.classList.remove('active');
 
-
-
-window.onscroll = () =>{
-
-    searchform.classList.remove('active');
-
-    if(window.scrollY > 80){
+      if (window.scrollY > 80) {
         document.querySelector('.header .header-2').classList.add('active');
-
-    }else{
+      } else {
         document.querySelector('.header .header-2').classList.remove('active');
-    }
-}
+      }
+    };
 
-window.onload = () =>{
-
-    if(window.scrollY > 80){
+    window.onload = function () {
+      if (window.scrollY > 80) {
         document.querySelector('.header .header-2').classList.add('active');
-
-    }else{
+      } else {
         document.querySelector('.header .header-2').classList.remove('active');
-    }
- 
-}
+      }
+    };
 
+    /*----- login form -------- */
+    $scope.loginForm = document.querySelector('.login-form-container');
 
-/*----- login form -------- */
+    $scope.toggleLoginForm = function () {
+      $scope.loginForm.classList.toggle('active');
+    };
 
-var loginForm = document.querySelector('.login-form-container');
+    $scope.closeLoginForm = function () {
+      $scope.loginForm.classList.remove('active');
+    };
 
-document.querySelector('#login-btn').onclick = () =>{
-
-    loginForm.classList.toggle('active');
-}
-
-document.querySelector('#close-login-btn').onclick = () =>{
-
-    loginForm.classList.remove('active');
-}
-
-/*-------- swiper ---------- */
-
-var swiper = new Swiper(".books-list", {
-   
-    loop:true,
-    centeredSlides:true,
-    autoplay:{
-        delay:9500,
-        disableOnInteraction:false,
-    },
-    breakpoints: {
-     0: {
-        slidesPerView: 1,   
+    /*-------- swiper ---------- */
+    var swiper = new Swiper(".books-list", {
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
       },
-      768: {
-        slidesPerView: 2, 
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
       },
-      1024: {
-        slidesPerView: 3, 
-      },
-    },
-  });
+    });
 
-/*-------- featured section start ---------- */
+    /*-------- featured section start ---------- */
 
-var swiper = new Swiper(".featured-slider", {
-   
-    spaceBetween:10,
-    loop:true,
-    centeredSlides:true,
-    autoplay:{
-        delay:9500,
-        disableOnInteraction:false,
-    },
-    navigation:{
-        nextEl:".swiper-button-next",
-        prevEl:".swiper-button-prev",
-    },
-    breakpoints: {
-     0: {
-        slidesPerView: 1,   
+    var swiper = new Swiper(".featured-slider", {
+
+      spaceBetween: 10,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
       },
-      450:{
-        slidesPerView: 2,   
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
-      768: {
-        slidesPerView: 3, 
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        450: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
       },
-      1024: {
-        slidesPerView: 4, 
-      },
-    },
-  });
+    });
 
 
-  /*-------- arrivals section start ---------- */
+    /*-------- arrivals section start ---------- */
 
-  var swiper = new Swiper(".arrivals-slider", {
-    spaceBetween: 10,
-    loop:true,
-    centeredSlides:true,
-    autoplay:{
-        delay:9500,
-        disableOnInteraction:false,
-    },
-    breakpoints: {
-     0: {
-        slidesPerView: 1,   
+    var swiper = new Swiper(".arrivals-slider", {
+      spaceBetween: 10,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
       },
-      768: {
-        slidesPerView: 2, 
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
       },
-      1024: {
-        slidesPerView: 3, 
-      },
-    },
-  });
+    });
 
-  
-  /*-------- reviews section start ---------- */
 
-  var swiper = new Swiper(".reviews-slider", {
-    spaceBetween: 10,
-    loop:true,
-    centeredSlides:true,
-    autoplay:{
-        delay:9500,
-        disableOnInteraction:false,
-    },
-    breakpoints: {
-     0: {
-        slidesPerView: 1,   
-      },
-      768: {
-        slidesPerView: 2, 
-      },
-      1024: {
-        slidesPerView: 3, 
-      },
-    },
-  });
+    /*-------- reviews section start ---------- */
 
-   /*-------- blog section start ---------- */
+    var swiper = new Swiper(".reviews-slider", {
+      spaceBetween: 10,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
 
-   var swiper = new Swiper(".blog-slider", {
-    spaceBetween: 10,
-    loop:true,
-    centeredSlides:true,
-    autoplay:{
-        delay:9500,
-        disableOnInteraction:false,
-    },
-    breakpoints: {
-     0: {
-        slidesPerView: 1,   
+    /*-------- blog section start ---------- */
+
+    var swiper = new Swiper(".blog-slider", {
+      spaceBetween: 10,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 9500,
+        disableOnInteraction: false,
       },
-      768: {
-        slidesPerView: 2, 
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
       },
-      1024: {
-        slidesPerView: 3, 
-      },
-    },
-  });
+    });
+
+  }]);
