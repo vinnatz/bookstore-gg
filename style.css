@@ -98,6 +98,7 @@ header .searchbar #search-box {
 
 header .searchbar .icons {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -130,15 +131,16 @@ header .navbar.active {
     z-index: 1000;
 }
 
-/* Home (Hero Page) */
-section.home {
+/* Deals (Hero Page) */
+section.deals {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--black-bg);
+    background-color: var(--gray-bg);
+    gap: 3rem;
 }
 
-section.home .content {
+section.deals .content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -148,12 +150,12 @@ section.home .content {
     font-size: 1.5rem;
 }
 
-section.home .content h3 {
+section.deals .content h3 {
     color: white;
     font-size: 4rem;
 }
 
-section.home .content .btn {
+section.deals .content .btn {
     background-color: var(--aqua);
     color: white;
     font-weight: 800;
@@ -161,26 +163,26 @@ section.home .content .btn {
     font-size: 1.7rem;
 }
 
-section.home .content .btn:hover {
+section.deals .content .btn:hover {
     background-color: var(--dark-aqua);
 }
 
 /* Scrollable books in Home */
-section.home .books-list {
+section.deals .books-list {
     flex: 1;
     margin-top: 2rem;
     text-align: center;
 }
 
-section.home .books-list a img {
+section.deals .books-list a img {
     height: 25rem;
 }
 
-section.home .books-list a:hover img {
+section.deals .books-list a:hover img {
     transform: scale(0.9);
 }
 
-section.home .books-list .stand {
+section.deals .books-list .stand {
     width: 100%;
     margin-top: -0.5rem;
 }
@@ -380,7 +382,7 @@ section.featured .featured-slider .slider-button-next {
 
 /* New Arrivals */
 section.arrivals {
-    background-color: var(--gray-bg);
+    background-color: var(--black-bg);
 }
 
 section.arrivals h3 {

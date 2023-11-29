@@ -37,12 +37,11 @@
                 <div class="website-name">Weebshit General</div>
             </a>
 
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="search here..." id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
-            </form>
-
             <div class="icons">
+                <form action="" class="search-form">
+                    <input type="search" name="" placeholder="search here..." id="search-box">
+                    <label for="search-box" class="fas fa-search"></label>
+                </form>
                 <a href="" class="fas fa-heart"></a>
                 <a href="" class="fas fa-shopping-cart"></a>
                 <div id="login-btn" class="fas fa-user"></div>
@@ -50,20 +49,30 @@
         </div>
 
         <div class="navbar">
-            <a href="#home">Home</a>
+            <a href="#deals">deals</a>
             <a href="#featured">Featured</a>
             <a href="#arrivals">New Arrivals</a>
         </div>
     </header>
 
-    <!-- Home -->
-    <section class="home" id="home">
-            <div class="content">
-                <h3>Up to 69% offers</h3>
-                <p>First off, systemd is not an init system, it has an init system as part of the systemd suite. systemd is a project to build a standardised lowlevel userland for Linux.</p>
-                <a href="#arrivals" class="btn">shop now</a>
-            </div>
 
+    <!-- New Arrivals -->
+    <section class="arrivals" id="arrivals">
+        <h3>New Arrivals</h3>
+        <div class="swiper arrivals-slider row1">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+
+        <div class="swiper arrivals-slider row2">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Home -->
+    <section class="deals" id="deals">
             <div class="swiper books-list">
                 <div class="swiper-wrapper">
                     <a href="" class="swiper-slide"><img src="./assets/manga/goodbyeEri.jpg" alt=""></a>
@@ -76,7 +85,25 @@
                 </div>
                 <img src="./assets/stand.png" class="stand" alt="">
             </div>
+
+            <div class="content">
+                <h3>Up to 69% Discount</h3>
+                <p>First off, systemd is not an init system, it has an init system as part of the systemd suite. systemd is a project to build a standardised lowlevel userland for Linux.</p>
+                <a href="#arrivals" class="btn">shop now</a>
+            </div>
     </section>
+
+
+    <!-- Featured -->
+    <section class="featured" id="featured">
+        <h3>Featured Mangas</h3>
+        <div class="swiper featured-slider">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
 
     <!-- Icons -->
     <section class="icons-container">
@@ -105,31 +132,6 @@
         </div>
     </section>
 
-
-    <!-- Featured -->
-    <section class="featured" id="featured">
-        <h3>featured books</h3>
-        <div class="swiper featured-slider">
-            <div class="swiper-wrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
-
-
-    <!-- New Arrivals -->
-    <section class="arrivals" id="arrivals">
-        <h3>New Arrivals</h3>
-        <div class="swiper arrivals-slider row1">
-            <div class="swiper-wrapper">
-            </div>
-        </div>
-
-        <div class="swiper arrivals-slider row2">
-            <div class="swiper-wrapper">
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>
