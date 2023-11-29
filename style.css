@@ -49,7 +49,6 @@ html::-webkit-scrollbar-thumb {
     background: var(--black);
 }
 
-
 /* All Icons */
 .fas {
     color: white;
@@ -131,7 +130,6 @@ header .navbar.active {
     z-index: 1000;
 }
 
-
 /* Home (Hero Page) */
 section.home {
     display: flex;
@@ -160,6 +158,7 @@ section.home .content .btn {
     color: white;
     font-weight: 800;
     font-style: italic;
+    font-size: 1.7rem;
 }
 
 section.home .content .btn:hover {
@@ -186,35 +185,7 @@ section.home .books-list .stand {
     margin-top: -0.5rem;
 }
 
-
-.header .header-1 .search-form label {
-    font-size: 2.5rem;
-    padding-right: 1.5rem;
-    color: var(--black);
-    cursor: pointer;
-}
-
-.header .header-1 .search-form label:hover {
-    color: var(--orange);
-}
-
-/*------ navigation bar------*/
-.header .header-2 {
-    background-color: var(--orange);
-}
-
-.header .header-2 .navbar {
-    text-align: center;
-}
-
-.header .header-2 .navbar a {
-    color: #fff;
-    display: inline-block;
-    padding: 1.2rem;
-    font-size: 1.7rem;
-}
-
-/*---- media query ----------*/
+/* Media Query */
 @media(max-width:991px) {
     html {
         font-size: 55%;
@@ -233,139 +204,12 @@ section.home .books-list .stand {
     body {
         padding-bottom: 6rem;
     }
-
-    .header .header-2 {
-        display: none;
-    }
-
-    .header .header-1 {
-        box-shadow: var(--box-shadow);
-        position: relative;
-    }
-
-    .header .header-1 .search-form {
-        position: absolute;
-        top: -115%;
-        right: 2rem;
-        width: 90%;
-        box-shadow: var(--box-shadow);
-    }
-
-    .header .header-1 .search-form.active {
-        top: 115%;
-    }
-
-    #search-btn {
-        display: inline-block;
-    }
-
-
 }
 
 @media(max-width:450px) {
-
     html {
         font-size: 50%;
     }
-}
-
-/*  bottom-navbar */
-.bottom-navbar {
-    text-align: center;
-    background: var(--orange);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    display: none;
-}
-
-.bottom-navbar a {
-    font-size: 2.5rem;
-    padding: 2rem;
-    color: #fff;
-}
-
-.bottom-navbar a:hover {
-    background-color: var(--dark-color);
-}
-
-@media(max-width:768px) {
-    .bottom-navbar {
-        display: inline-block;
-    }
-}
-
-.login-form-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
-    position: fixed;
-    top: 0;
-    right: -105%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
-}
-
-.login-form-container.active {
-    right: 0;
-}
-
-.login-form-container form {
-    background: #fff;
-    border: var(--border);
-    width: 40rem;
-    padding: 2rem;
-    box-shadow: var(--box-shadow);
-    border-radius: .5rem;
-    margin: 2rem;
-}
-
-.login-form-container form h3 {
-    font-size: 2.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--black);
-}
-
-.login-form-container form span {
-    display: block;
-    font-size: 1.5rem;
-    padding-top: 1rem;
-}
-
-.login-form-container form .box {
-    width: 100%;
-    margin: 0.7rem 0;
-    font-size: 1.6rem;
-    border: var(--border);
-    border-radius: 0.5rem;
-    padding: 1rem 1.2rem;
-    color: var(--black);
-    text-transform: none;
-}
-
-
-.login-form-container form .check-box {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 0;
-}
-
-.login-form-container form .check-box label {
-    font-size: 1.5rem;
-    color: var(--light-color);
-    cursor: pointer;
-}
-
-.login-form-container form .btn {
-    text-align: center;
-    width: 100%;
-    margin: 1.5rem 0;
 }
 
 .btn {
@@ -373,39 +217,10 @@ section.home .books-list .stand {
     display: inline-block;
     padding: 0.9rem 3rem;
     border-radius: 0.5rem;
-    color: #fff;
-    background: var(--orange);
-    font-size: 1.7rem;
     cursor: pointer;
-    font-weight: 500;
-
 }
 
-.btn:hover {
-    background-color: var(--dark-color);
-}
-
-.login-form-container form p {
-    padding-top: 0.8rem;
-    color: var(--light-color);
-    font-size: 1.5rem;
-}
-
-.login-form-container form p a {
-    text-decoration: underline;
-    color: var(--orange);
-}
-
-.login-form-container #close-login-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 2.5rem;
-    font-size: 5rem;
-    cursor: pointer;
-
-}
-
-/*---- home section ---------*/
+/* Sections */
 section {
     padding: 5rem 9%;
 }
@@ -416,68 +231,7 @@ section {
     }
 }
 
-.home {
-    background: url(../image/banner-bg.jpg);
-    background-position: center;
-    background-size: cover;
-}
-
-.home .row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.home .row .content {
-    flex: 1 1 42rem;
-}
-
-.home .row .content h3 {
-    color: var(--black);
-    font-size: 4.5rem;
-}
-
-.home .row .content p {
-    color: var(--light-color);
-    font-size: 1.4rem;
-    line-height: 2;
-    padding: 1rem 0;
-}
-
-.home .row .books-list {
-    flex: 1 1 42rem;
-    margin-top: 2rem;
-    text-align: center;
-
-}
-
-.home .row .books-list a img {
-    height: 25rem;
-}
-
-.home .row .books-list a:hover img {
-    transform: scale(0.9);
-}
-
-.home .row .books-list .stand {
-    width: 100%;
-    margin-top: -2rem;
-}
-
-@media(max-width:768px) {
-    .home .row .content h3 {
-        color: var(--black);
-        font-size: 3.5rem;
-    }
-
-    .home .row .content {
-        text-align: center;
-    }
-}
-
-/*-------- icons-container ---------*/
-
+/* Icons Container */
 section.icons-container {
     display: flex;
     align-items: center;
@@ -554,7 +308,7 @@ section.featured .featured-slider .box:hover .author {
 }
 
 section.featured .featured-slider .box .author:hover {
-    background-color: var(--light-gray);
+    background-color: white;
     color: var(--dark-aqua);
 }
 
@@ -611,6 +365,7 @@ section.featured .featured-slider .box .content > div > a {
     background-color: var(--dark-aqua);
     color: white;
     font-weight: 900;
+    font-size: 1.2rem;
 }
 
 section.featured .featured-slider .box .content > div > a:hover {
