@@ -190,12 +190,48 @@ function createNewArrivalItems(obj, rowNum) {
     `;
     item.appendChild(content);
 
+    createPopUp(item, obj);
+
     newArrivals.appendChild(item);
 }
+
+function createPopUp(ptr, obj) {
+    ptr.addEventListener("click", () => {
+        let blurPage = document.createElement('div');
+        blurPage.classList.add('blur');
+
+        let image = document.createElement('img');
+        image.setAttribute('src', `${IMAGE_PATH}${obj.image}`);
+        image.classList.add('scale-in-center');
+
+        blurPage.addEventListener("click", () => {
+            image.classList.remove('scale-in-center');
+            image.classList.add('scale-out-center');
+            document.body.removeChild(blurPage);
+        });
+
+        blurPage.appendChild(image);
+        document.body.insertBefore(blurPage, document.querySelector('header'));
+    });
+}
+
+// Create Add Cart Notification
+function addCartNotification(obj) {
+    let popUp = document.createElement('div');
+    popUp.classList.add('add-cart-dialog');
+
+    popUp.innerHTML = `<span>${obj.title} Vol.${obj.volume}</span> added to cart`;
+    document.body.insertBefore(popUp, document.querySelector('header'));
+
+    setTimeout(() => document.body.removeChild(popUp), 1200);
+}
+
 
 // Add to Cart UI
 function addToCart(obj) {
     const cart = document.querySelector('section.cart > .content');
+
+    addCartNotification(obj);
 
     let item = document.createElement('div');
     item.classList.add('item');
@@ -237,10 +273,9 @@ hideCartBtn.addEventListener("click", () => {
     });
 });
 
-
 const IMAGE_PATH = "./assets/manga/";
 
-// Comic dataset
+// Manga dataset
 const data = [{
     id: 1,
     title: "100 Ghost Stories",

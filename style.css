@@ -7,10 +7,9 @@
     --light-gray: rgb(153, 153, 153);
     --aqua: rgb(24, 176, 171);
     --dark-aqua: rgb(35, 107, 104);
-    --orange: #ff6347;
-    --dark-color: #ff4500;
-    --black: #444;
-    --light-color: #666;
+    --cyan: #0a9396;
+    --deep-cyan: #005f73;
+    --dark-cyan: #001219;
     --border: 0.1rem solid rgba(0, 0, 0, 0.1);
     --border-hover: 0.1rem solid var(--black);
     --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -595,3 +594,105 @@ section.cart > .content > .item > .desc > p {
   }
 }
 
+.scale-in-center {
+	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+
+
+/* Details Page */
+.blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(6px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blur img {
+    height: 90vh;
+    width: auto;
+}
+
+/* Add to Cart Pop-up */
+.add-cart-dialog {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 8000;
+    width: 300px;
+    padding: 15px;
+    font-size: 2rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--cyan);
+    background-color: var(--dark-cyan);
+    border: 2px solid var(--deep-cyan);
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+.add-cart-dialog > span {
+    color: #ffbe0b;
+}
