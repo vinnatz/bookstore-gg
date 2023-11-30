@@ -49,6 +49,11 @@ angular.module('myApp', [])
             window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus() ;
         };
 
+        // When you want to submit 
+        $scope.preventSubmit = function(event) {
+            event.preventDefault();
+        };
+
         // Add to Cart
         $scope.cart = [];
         let featuredItems = document.querySelectorAll('section.featured .featured-slider .box .content button');
