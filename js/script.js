@@ -54,6 +54,15 @@ angular.module('myApp', [])
             event.preventDefault();
         };
 
+        // When you click off or click "x"
+        $scope.clearSearch = function() {
+            setTimeout(function() {
+                $scope.$apply(function() {
+                    $scope.searchResults = [];
+                });
+            }, 200); // delay in milliseconds
+        };
+        
         // Add to Cart
         $scope.cart = [];
         let featuredItems = document.querySelectorAll('section.featured .featured-slider .box .content button');
