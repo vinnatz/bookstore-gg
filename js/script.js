@@ -1,5 +1,5 @@
 angular.module('myApp', [])
-    .controller('myController', ['$scope', function ($scope) {
+    .controller('myController', ['$scope', '$location', function ($scope, $location) {
 
         // Adding Catalogue with JS
         data.forEach(item => createFeaturedBook(item));
@@ -28,6 +28,25 @@ angular.module('myApp', [])
             } else {
                 document.querySelector('header .navbar').classList.remove('active');
             }
+        };
+
+        // Book data
+        $scope.books = data;
+
+        // Search functionality
+        $scope.searchText = '';
+        $scope.searchResults = [];
+
+        $scope.searchBook = function() {
+            if ($scope.searchText.trim() === '') {
+                $scope.searchResults = [];
+            } else {
+                $scope.searchResults = $scope.books.filter(book => book.title.toLowerCase().includes($scope.searchText.toLowerCase()));
+            }
+        };
+
+        $scope.goToBookDetails = function(bookuniqueID) {
+            window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus() ;
         };
 
         // Add to Cart
@@ -283,6 +302,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost1.png",
     price: "9.99",
+    uniqueID: 141760, 
 }, {
     id: 2,
     title: "100 Ghost Stories",
@@ -290,6 +310,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost2.jpg",
     price: "11.99",
+    uniqueID: 141760,
 }, {
     id: 3,
     title: "100 Ghost Stories",
@@ -297,6 +318,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost3.jpg",
     price: "9.99",
+    uniqueID: 141760,
 }, {
     id: 4,
     title: "100 Ghost Stories",
@@ -304,6 +326,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost4.jpg",
     price: "12.99",
+    uniqueID: 141760,
 }, {
     id: 5,
     title: "100 Ghost Stories",
@@ -311,6 +334,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost5.jpg",
     price: "11.99",
+    uniqueID: 141760,
 }, {
     id: 6,
     title: "100 Ghost Stories",
@@ -318,6 +342,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost6.jpg",
     price: "14.99",
+    uniqueID: 141760,
 }, {
     id: 7,
     title: "Goodbye, Eri",
@@ -325,6 +350,7 @@ const data = [{
     author: "Fujimoto Tatsuki",
     image: "goodbyeEri.jpg",
     price: "19.99",
+    uniqueID: 145863,
 }, {
     id: 8,
     title: "The Horizon",
@@ -332,6 +358,7 @@ const data = [{
     author: "Jeong Ji-Hoon",
     image: "theHorizon1.jpg",
     price: "10.99",
+    uniqueID: 125036,
 }, {
     id: 9,
     title: "The Horizon",
@@ -339,6 +366,7 @@ const data = [{
     author: "Jeong Ji-Hoon",
     image: "theHorizon2.jpg",
     price: "14.99",
+    uniqueID: 125036,
 }, {
     id: 10,
     title: "The Horizon",
@@ -346,6 +374,7 @@ const data = [{
     author: "Jeong Ji-Hoon",
     image: "theHorizon3.jpg",
     price: "19.99",
+    uniqueID: 125036,
 }, {
     id: 11,
     title: "Annarasumanara",
@@ -353,6 +382,7 @@ const data = [{
     author: "Ha Il-Kwon",
     image: "annarasumanara1.jpg",
     price: "9.99",
+    uniqueID: 30079,
 }, {
     id: 12,
     title: "Annarasumanara",
@@ -360,6 +390,7 @@ const data = [{
     author: "Ha Il-Kwon",
     image: "annarasumanara2.jpg",
     price: "8.99",
+    uniqueID: 30079,
 }, {
     id: 13,
     title: "Annarasumanara",
@@ -367,6 +398,7 @@ const data = [{
     author: "Ha Il-Kwon",
     image: "annarasumanara3.jpg",
     price: "6.99",
+    uniqueID: 30079,
 }, {
     id: 14,
     title: "Uzumaki",
@@ -374,6 +406,7 @@ const data = [{
     author: "Itou Junji",
     image: "uzumaki1.jpg",
     price: "11.99",
+    uniqueID: 436,
 }, {
     id: 15,
     title: "Uzumaki",
@@ -381,6 +414,7 @@ const data = [{
     author: "Itou Junji",
     image: "uzumaki2.jpg",
     price: "13.99",
+    uniqueID: 436,
 }, {
     id: 16,
     title: "Uzumaki",
@@ -388,6 +422,7 @@ const data = [{
     author: "Itou Junji",
     image: "uzumaki3.jpg",
     price: "12.99",
+    uniqueID: 436,
 }, {
     id: 17,
     title: "Stargazing Dog",
@@ -395,6 +430,7 @@ const data = [{
     author: "Murakami Takashi",
     image: "stargazingDog1.jpg",
     price: "12.99",
+    uniqueID: 21467,
 }, {
     id: 18,
     title: "Stargazing Dog",
@@ -402,4 +438,5 @@ const data = [{
     author: "Murakami Takashi",
     image: "stargazingDog2.jpg",
     price: "14.99",
+    uniqueID: 21467,
 }];

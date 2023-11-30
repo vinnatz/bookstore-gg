@@ -29,6 +29,7 @@
 </head>
 
 <body ng-controller="myController">
+
     <!-- Header & Navbar -->
     <header>
         <div class="searchbar">
@@ -39,9 +40,18 @@
 
             <div class="icons">
                 <form action="" class="search-form">
-                    <input type="search" name="" placeholder="search here..." id="search-box">
+                    <input type="search" name="" placeholder="search here..." id="search-box" ng-model="searchText" ng-keyup="searchBook()">
                     <label for="search-box" class="fas fa-search"></label>
-                </form>
+                </form>   
+                
+                <!-- Autocomplete list -->
+                <div id="autocomplete-list" ng-show="searchResults.length > 0">
+                    <div ng-repeat="book in searchResults" ng-click="goToBookDetails(book.uniqueID)">
+                        <img ng-src="./assets/manga/{{book.image}}" alt="{{book.title}}">
+                        <span>{{book.title}} {{book.volume}}</span>
+                    </div>
+                </div>
+                
                 <a href="" class="fas fa-heart"></a>
                 <a href="" class="fas fa-shopping-cart"></a>
                 <div id="login-btn" class="fas fa-user"></div>
@@ -54,6 +64,8 @@
             <a href="#arrivals">New Arrivals</a>
         </div>
     </header>
+
+ 
 
     <!-- Cart -->
     <section class="cart">

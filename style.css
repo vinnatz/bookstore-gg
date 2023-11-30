@@ -100,6 +100,47 @@ header .searchbar .icons {
     gap: 10px;
 }
 
+/* Search Dropdown Design */
+#autocomplete-list {
+    position: absolute;
+    top: 6em;
+    width: 25.25em;
+    max-height: 200px;
+    overflow: auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#autocomplete-list::-webkit-scrollbar {
+    display: none;
+}
+
+#autocomplete-list div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#autocomplete-list div:last-child {
+    border-bottom: none;
+}
+
+#autocomplete-list img {
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#autocomplete-list span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* Botttom Header (Navbar) */
 header .navbar {
     display: flex;
