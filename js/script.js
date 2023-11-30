@@ -56,9 +56,12 @@ angular.module('myApp', [])
 
         // When you click off or click "x"
         $scope.clearSearch = function() {
+            let autocompleteList = document.getElementById('autocomplete-list');
+            autocompleteList.classList.add('hide');
             setTimeout(function() {
                 $scope.$apply(function() {
                     $scope.searchResults = [];
+                    autocompleteList.classList.remove('hide');
                 });
             }, 200); // delay in milliseconds
         };
