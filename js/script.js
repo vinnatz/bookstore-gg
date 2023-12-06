@@ -159,6 +159,7 @@ angular.module('myApp', [])
             document.getElementById('login-btn').classList.remove('fa-sign-out-alt');
             document.getElementById('login-btn').classList.add('fa-user');
             document.getElementById('login-btn').onclick = $scope.openLogin;
+            alert('Anda telah logout');
         };
 
 
