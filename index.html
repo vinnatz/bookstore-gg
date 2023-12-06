@@ -16,7 +16,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
     <!-- Scripts -->
@@ -40,11 +42,11 @@
 
             <div class="icons">
                 <form action="" class="search-form" ng-submit="preventSubmit($event)">
-                    <input type="search" name="" placeholder="search here..." id="search-box" ng-model="searchText" 
-                    ng-change="searchBook()" ng-blur="clearSearch()" ng-focus="searchBook()">
+                    <input type="search" name="" placeholder="search here..." id="search-box" ng-model="searchText"
+                        ng-change="searchBook()" ng-blur="clearSearch()" ng-focus="searchBook()">
                     <label for="search-box" class="fas fa-search"></label>
                 </form>
-                
+
                 <!-- Autocomplete list -->
                 <div id="autocomplete-list" ng-show="searchResults.length > 0">
                     <div ng-repeat="book in searchResults" ng-click="goToBookDetails(book.uniqueID)">
@@ -52,31 +54,20 @@
                         <span>{{book.title}} Volume {{book.volume}}</span>
                     </div>
                 </div>
-                
+
                 <a href="" class="fas fa-heart"></a>
                 <a href="" class="fas fa-shopping-cart"></a>
-                <div id="login-btn" class="fas fa-user"></div>
+                <div id="login-btn" class="fas fa-user" ng-click="openLogin()"></div>
             </div>
         </div>
 
         <div class="navbar">
+            <a href="#arrivals">New Arrivals</a>
             <a href="#deals">deals</a>
             <a href="#featured">Featured</a>
-            <a href="#arrivals">New Arrivals</a>
         </div>
     </header>
 
- 
-
-    <!-- Cart -->
-    <section class="cart">
-        <div class="top-bar">
-            <h3>Shopping Cart</h3>
-            <a href="" class="fa-solid fa-chevron-right"></a>
-        </div>
-        <div class="content">
-        </div>
-    </section>
 
     <!-- New Arrivals -->
     <section class="arrivals" id="arrivals">
@@ -92,27 +83,39 @@
         </div>
     </section>
 
+    <!-- Cart -->
+    <section class="cart">
+        <div class="top-bar">
+            <h3>Shopping Cart</h3>
+            <a href="" class="fa-solid fa-chevron-right"></a>
+        </div>
+        <div class="content">
+        </div>
+    </section>
+
+
 
     <!-- Home -->
     <section class="deals" id="deals">
-            <div class="swiper books-list">
-                <div class="swiper-wrapper">
-                    <a href="" class="swiper-slide"><img src="./assets/manga/goodbyeEri.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon1.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/annarasumanara1.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/stargazingDog2.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/uzumaki3.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon2.jpg" alt=""></a>
-                    <a href="" class="swiper-slide"><img src="./assets/manga/ghost2.jpg" alt=""></a>
-                </div>
-                <img src="./assets/stand.png" class="stand" alt="">
+        <div class="swiper books-list">
+            <div class="swiper-wrapper">
+                <a href="" class="swiper-slide"><img src="./assets/manga/goodbyeEri.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon1.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/annarasumanara1.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/stargazingDog2.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/uzumaki3.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/theHorizon2.jpg" alt=""></a>
+                <a href="" class="swiper-slide"><img src="./assets/manga/ghost2.jpg" alt=""></a>
             </div>
+            <img src="./assets/stand.png" class="stand" alt="">
+        </div>
 
-            <div class="content">
-                <h3>Discount Up to 69%</h3>
-                <p>First off, systemd is not an init system, it has an init system as part of the systemd suite. systemd is a project to build a standardised lowlevel userland for Linux.</p>
-                <a href="#arrivals" class="btn">shop now</a>
-            </div>
+        <div class="content">
+            <h3>Discount Up to 69%</h3>
+            <p>First off, systemd is not an init system, it has an init system as part of the systemd suite. systemd is
+                a project to build a standardised lowlevel userland for Linux.</p>
+            <a href="#arrivals" class="btn">shop now</a>
+        </div>
     </section>
 
 
@@ -162,4 +165,5 @@
     </footer>
 
 </body>
+
 </html>

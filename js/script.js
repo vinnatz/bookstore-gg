@@ -30,6 +30,136 @@ angular.module('myApp', [])
             }
         };
 
+        // Login form
+        // Open login
+        $scope.openLogin = function () {
+            let blurPage = document.createElement('div');
+            blurPage.classList.add('blur');
+
+            let loginForm = document.createElement('div');
+            loginForm.classList.add('login-form');
+
+            loginForm.innerHTML = `
+                <button class="close-btn" ng-click="closeLogin()"> X </button>
+                <form class="login">
+                    <h2>Welcome</h2>
+                    <p>Please log in</p>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <input type="submit" value="Log In" />
+                    <div class="links">
+                        <a href="#" id="registerUser">Register</a>
+                    </div>
+                </form>
+            `;
+
+            loginForm.querySelector('.close-btn').addEventListener('click', function () {
+                $scope.closeLogin();
+            });
+            loginForm.querySelector('#registerUser').addEventListener('click', function () {
+                $scope.closeLogin();
+                $scope.openRegister();
+            });
+
+            blurPage.appendChild(loginForm);
+            document.body.appendChild(blurPage);
+
+            $scope.showLogin = true;
+            // Event handler for login form
+            document.querySelector('.login').addEventListener('submit', function (event) {
+                event.preventDefault();
+                $scope.login();
+            });
+        };
+
+        // Open Register
+        $scope.openRegister = function () {
+            let blurPage = document.createElement('div');
+            blurPage.classList.add('blur');
+
+            let registerForm = document.createElement('div');
+            registerForm.classList.add('login-form');
+
+            registerForm.innerHTML = `
+                <button class="close-btn" ng-click="closeRegister()"> X </button>
+                <form class="login">
+                    <h2>Register</h2>
+                    <p>Create an account</p>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <input type="submit" value="Register" />
+                    <div class="links">
+                        <span> Already have an account? <a href="#" id="loginUser">Log in</a></span>
+                    </div>
+                </form>
+            `;
+
+            registerForm.querySelector('.close-btn').addEventListener('click', function () {
+                $scope.closeRegister();
+            });
+            registerForm.querySelector('#loginUser').addEventListener('click', function () {
+                $scope.closeRegister();
+                $scope.openLogin();
+            });
+
+            blurPage.appendChild(registerForm);
+            document.body.appendChild(blurPage);
+
+            $scope.showLogin = true;
+        };
+
+        // Close Login
+        $scope.closeLogin = function () {
+            let blurPage = document.querySelector('.blur');
+            if (blurPage) {
+                document.body.removeChild(blurPage);
+            }
+
+            $scope.showLogin = false;
+        };
+
+        // Close Register
+        $scope.closeRegister = function () {
+            let blurPage = document.querySelector('.blur');
+            if (blurPage) {
+                document.body.removeChild(blurPage);
+            }
+
+            $scope.showLogin = false;
+        };
+
+        // Event handler for login form
+        $scope.login = function () {
+            let usernameInput = document.querySelector('.login input[type=text]').value;
+            let passwordInput = document.querySelector('.login input[type=password]').value;
+
+            let user = loginData.find(user => user.username === usernameInput && user.password === passwordInput);
+
+            if (user) {
+                alert(`Selamat datang, ${user.username}!`);
+                $scope.closeLogin();
+                document.getElementById('login-btn').classList.remove('fa-user');
+                document.getElementById('login-btn').classList.add('fa-sign-out-alt');
+                document.getElementById('login-btn').onclick = $scope.logout;
+            } else {
+                $scope.closeLogin();
+                $scope.openLogin();
+                alert('Username atau password salah. Silakan coba lagi.');
+            }
+        };
+
+        // Event handler for logout
+        $scope.logout = function () {
+            document.getElementById('login-btn').classList.remove('fa-sign-out-alt');
+            document.getElementById('login-btn').classList.add('fa-user');
+            document.getElementById('login-btn').onclick = $scope.openLogin;
+        };
+
+
+        // End of Login Form
+
+
+
         // Book data
         $scope.books = data;
 
@@ -37,7 +167,7 @@ angular.module('myApp', [])
         $scope.searchText = '';
         $scope.searchResults = [];
 
-        $scope.searchBook = function() {
+        $scope.searchBook = function () {
             if ($scope.searchText.trim() === '') {
                 $scope.searchResults = [];
             } else {
@@ -45,27 +175,27 @@ angular.module('myApp', [])
             }
         };
 
-        $scope.goToBookDetails = function(bookuniqueID) {
-            window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus() ;
+        $scope.goToBookDetails = function (bookuniqueID) {
+            window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
         };
 
         // When you want to submit 
-        $scope.preventSubmit = function(event) {
+        $scope.preventSubmit = function (event) {
             event.preventDefault();
         };
 
         // When you click off or click "x"
-        $scope.clearSearch = function() {
+        $scope.clearSearch = function () {
             let autocompleteList = document.getElementById('autocomplete-list');
             autocompleteList.classList.add('hide');
-            setTimeout(function() {
-                $scope.$apply(function() {
+            setTimeout(function () {
+                $scope.$apply(function () {
                     $scope.searchResults = [];
                     autocompleteList.classList.remove('hide');
                 });
             }, 200); // delay in milliseconds
         };
-        
+
         // Add to Cart
         $scope.cart = [];
         let featuredItems = document.querySelectorAll('section.featured .featured-slider .box .content button');
@@ -84,7 +214,7 @@ angular.module('myApp', [])
                     selected["qty"] = 1;
                     $scope.cart.push(selected);
                 }
-                
+
                 const cart = document.querySelector('section.cart > .content');
                 cart.innerHTML = '';
 
@@ -311,6 +441,11 @@ hideCartBtn.addEventListener("click", () => {
 
 const IMAGE_PATH = "./assets/manga/";
 
+const loginData = [{
+    username: "user",
+    password: "user"
+}];
+
 // Manga dataset
 const data = [{
     id: 1,
@@ -319,7 +454,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost1.png",
     price: "9.99",
-    uniqueID: 141760, 
+    uniqueID: 141760,
 }, {
     id: 2,
     title: "100 Ghost Stories",
