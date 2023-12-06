@@ -911,6 +911,14 @@ section.cart>.content>.item>.desc>p {
     text-align: center;
 }
 
-.add-cart-dialog>span {
+.add-cart-dialog > span {
     color: #ffbe0b;
+}
+
+.trash-btn {
+    background-color: transparent;
+    padding: 0;
+    margin: 0 0 0 auto;
+    align-self: center;
+    justify-self: flex-end;
 }

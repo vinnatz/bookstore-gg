@@ -58,7 +58,6 @@ angular.module('myApp', [])
                     </div>
                 </form>
             `;
-
             loginForm.querySelector('.close-btn').addEventListener('click', function () {
                 $scope.closeLogin();
             });
@@ -230,11 +229,22 @@ angular.module('myApp', [])
                     $scope.cart.push(selected);
                 }
 
+                const handleDelete = (e) => {
+                    const key = +e.target.dataset.key;
+                    $scope.cart = $scope.cart.filter(item => item.id !== key);
+                    const cart = document.querySelector('section.cart > .content');
+                    cart.innerHTML = '';
+
+                    $scope.cart.forEach(item => {
+                        addToCart(item, handleDelete);
+                    });
+                };
+
                 const cart = document.querySelector('section.cart > .content');
                 cart.innerHTML = '';
 
                 $scope.cart.forEach(item => {
-                    addToCart(item);
+                    addToCart(item, handleDelete);
                 });
             });
         });
@@ -423,7 +433,7 @@ function addCartNotification(obj) {
 
 
 // Add to Cart UI
-function addToCart(obj) {
+function addToCart(obj, handleDelete) {
     const cart = document.querySelector('section.cart > .content');
 
     addCartNotification(obj);
@@ -447,18 +457,11 @@ function addToCart(obj) {
 
     // Create delete button with trash bin icon
     let deleteBtn = document.createElement('button');
-    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-    deleteBtn.style.background = 'none'; // Remove background
-    deleteBtn.style.border = 'none'; // Remove border
-    deleteBtn.onclick = function() { 
-        item.remove(); 
-        let index = $scope.cart.findIndex(item => item.id === obj.id); // Find item in data source
-        if (index !== -1) {
-            $scope.cart.splice(index, 1); // Remove item from data source
-        }
-    };
-    item.appendChild(deleteBtn);
+    deleteBtn.innerHTML = `<i data-key="${obj.id}" class="fas fa-trash"></i>`;
+    deleteBtn.classList.add("trash-btn");
+    deleteBtn.addEventListener("click", handleDelete);
 
+    item.appendChild(deleteBtn);
     cart.appendChild(item);
 }
 
