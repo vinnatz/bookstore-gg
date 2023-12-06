@@ -162,7 +162,15 @@ angular.module('myApp', [])
             alert('Anda telah logout');
         };
 
-
+        // Event listener for the Escape key
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                $scope.$apply(function () {
+                    $scope.closeLogin();
+                    $scope.closeRegister();
+                });
+            }
+        });
         // End of Login Form
 
 
