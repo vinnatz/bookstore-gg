@@ -1,5 +1,5 @@
 angular.module('myApp', [])
-    .controller('myController', ['$scope', '$location', function ($scope, $location) {
+    .controller('myController', ['$scope', '$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
 
         // Adding Catalogue with JS
         data.forEach(item => createFeaturedBook(item));
@@ -28,6 +28,12 @@ angular.module('myApp', [])
             } else {
                 document.querySelector('header .navbar').classList.remove('active');
             }
+        };
+
+        // Navbar
+        $scope.goToSection = function (sectionId) {
+            $location.hash(sectionId);
+            $anchorScroll();
         };
 
         // Login form

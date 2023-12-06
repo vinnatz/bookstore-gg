@@ -62,12 +62,21 @@
         </div>
 
         <div class="navbar">
-            <a href="#arrivals">New Arrivals</a>
-            <a href="#deals">deals</a>
-            <a href="#featured">Featured</a>
+            <a href="" ng-click="goToSection('arrivals')">New Arrivals</a>
+            <a href="" ng-click="goToSection('deals')">Deals</a>
+            <a href="" ng-click="goToSection('featured')">Featured</a>
         </div>
     </header>
 
+    <!-- Cart -->
+    <section class="cart">
+        <div class="top-bar">
+            <h3>Shopping Cart</h3>
+            <a href="" class="fa-solid fa-chevron-right"></a>
+        </div>
+        <div class="content">
+        </div>
+    </section>
 
     <!-- New Arrivals -->
     <section class="arrivals" id="arrivals">
@@ -83,19 +92,7 @@
         </div>
     </section>
 
-    <!-- Cart -->
-    <section class="cart">
-        <div class="top-bar">
-            <h3>Shopping Cart</h3>
-            <a href="" class="fa-solid fa-chevron-right"></a>
-        </div>
-        <div class="content">
-        </div>
-    </section>
-
-
-
-    <!-- Home -->
+    <!-- Deals -->
     <section class="deals" id="deals">
         <div class="swiper books-list">
             <div class="swiper-wrapper">
