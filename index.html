@@ -123,6 +123,7 @@
             <div class="swiper-wrapper"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+            <div ng-repeat="book in searchResults" ng-click="goToBookDetails(book.uniqueID)"></div>
         </div>
     </section>
 

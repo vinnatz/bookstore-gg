@@ -316,6 +316,7 @@ angular.module('myApp', [])
     }]);
 
 function createFeaturedBook(obj) {
+    
     let featuredSlider = document.querySelector('section.featured > .swiper > .swiper-wrapper');
 
     let item = document.createElement('div');
@@ -324,12 +325,14 @@ function createFeaturedBook(obj) {
     let author = document.createElement('h4');
     author.classList.add('author');
     author.textContent = obj.author;
+    author.onclick = function() { window.open(`https://www.google.com/search?q=${obj.author}`, '_blank').focus(); }; // Updated this line
     item.appendChild(author);
 
     let imgDiv = document.createElement('div');
     imgDiv.classList.add('image');
     let image = document.createElement('img');
     image.setAttribute('src', `${IMAGE_PATH}${obj.image}`);
+    image.onclick = function() { goToBookDetails(obj.uniqueID); };
     imgDiv.appendChild(image);
     item.appendChild(imgDiv);
 
@@ -346,8 +349,19 @@ function createFeaturedBook(obj) {
     item.appendChild(content);
 
     featuredSlider.appendChild(item);
+    
 };
 
+function goToBookDetails(bookuniqueID) {
+    window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
+};
+
+// When you want to submit 
+function preventSubmit(event) {
+    event.preventDefault();
+};
+
+    
 function createNewArrivalItems(obj, rowNum) {
     let newArrivals = document.querySelector(`section.arrivals > .swiper.row${rowNum} > .swiper-wrapper`);
 
@@ -431,8 +445,23 @@ function addToCart(obj) {
     `;
     item.appendChild(desc);
 
+    // Create delete button with trash bin icon
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    deleteBtn.style.background = 'none'; // Remove background
+    deleteBtn.style.border = 'none'; // Remove border
+    deleteBtn.onclick = function() { 
+        item.remove(); 
+        let index = $scope.cart.findIndex(item => item.id === obj.id); // Find item in data source
+        if (index !== -1) {
+            $scope.cart.splice(index, 1); // Remove item from data source
+        }
+    };
+    item.appendChild(deleteBtn);
+
     cart.appendChild(item);
 }
+
 
 // Show Shopping Cart
 const shoppingCartBtn = document.querySelector('a.fas.fa-shopping-cart');
