@@ -1,5 +1,5 @@
 angular.module('myApp', [])
-    .controller('myController', ['$scope', '$location', function ($scope, $location) {
+    .controller('myController', ['$scope', '$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
 
         // Adding Catalogue with JS
         data.forEach(item => createFeaturedBook(item));
@@ -12,13 +12,20 @@ angular.module('myApp', [])
             $scope.searchform.classList.toggle('active');
         };
 
-        // Search Bar Disappear on Scroll
+        // Search Bar Disappear on Scroll with cart follows
+        var navbar = document.querySelector('header .navbar');
+        var cartIcon = document.querySelector('.fas.fa-shopping-cart');
+        var userIcon = document.querySelector('.fas.fa-user');
+        var originalParent = cartIcon.parentElement;
+
         window.onscroll = function () {
-            $scope.searchform.classList.remove('active');
-            if (window.scrollY > 80) {
-                document.querySelector('header .navbar').classList.add('active');
+            if (window.scrollY > navbar.offsetHeight) {
+                navbar.classList.add('active');
+                cartIcon.style.position = 'static';
+                navbar.appendChild(cartIcon);
             } else {
-                document.querySelector('header .navbar').classList.remove('active');
+                navbar.classList.remove('active');
+                originalParent.insertBefore(cartIcon, userIcon);
             }
         };
 
@@ -30,6 +37,144 @@ angular.module('myApp', [])
             }
         };
 
+        // Navbar
+        $scope.goToSection = function (sectionId) {
+            $location.hash(sectionId);
+            $anchorScroll();
+        };
+
+        // Login/Register Forms
+        // Open Register
+        $scope.openLogin = function () {
+            let blurPage = document.createElement('div');
+            blurPage.classList.add('blur');
+
+            let loginForm = document.createElement('div');
+            loginForm.classList.add('login-form');
+
+            loginForm.innerHTML = `
+                <button class="close-btn" ng-click="closeLogin()"> X </button>
+                <form class="login">
+                    <h2>Welcome</h2>
+                    <p>Please log in</p>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <input type="submit" value="Log In" />
+                    <div class="links">
+                        <a href="#" id="registerUser">Register</a>
+                    </div>
+                </form>
+            `;
+            loginForm.querySelector('.close-btn').addEventListener('click', function () {
+                $scope.closeLogin();
+            });
+            loginForm.querySelector('#registerUser').addEventListener('click', function () {
+                $scope.closeLogin();
+                $scope.openRegister();
+            });
+
+            blurPage.appendChild(loginForm);
+            document.body.appendChild(blurPage);
+
+            $scope.showLogin = true;
+
+            document.querySelector('.login').addEventListener('submit', function (event) {
+                event.preventDefault();
+                $scope.login();
+            });
+        };
+
+        // Open Register
+        $scope.openRegister = function () {
+            let blurPage = document.createElement('div');
+            blurPage.classList.add('blur');
+
+            let registerForm = document.createElement('div');
+            registerForm.classList.add('login-form');
+
+            registerForm.innerHTML = `
+                <button class="close-btn" ng-click="closeRegister()"> X </button>
+                <form class="login">
+                    <h2>Register</h2>
+                    <p>Create an account</p>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <input type="submit" value="Register" />
+                    <div class="links">
+                        <span> Already have an account? <a href="#" id="loginUser">Log in</a></span>
+                    </div>
+                </form>
+            `;
+
+            registerForm.querySelector('.close-btn').addEventListener('click', function () {
+                $scope.closeRegister();
+            });
+            registerForm.querySelector('#loginUser').addEventListener('click', function () {
+                $scope.closeRegister();
+                $scope.openLogin();
+            });
+
+            blurPage.appendChild(registerForm);
+            document.body.appendChild(blurPage);
+
+            $scope.showLogin = true;
+        };
+
+        // Close Login
+        $scope.closeLogin = function () {
+            let blurPage = document.querySelector('.blur');
+            if (blurPage) {
+                document.body.removeChild(blurPage);
+            }
+
+            $scope.showLogin = false;
+        };
+
+        // Close Register
+        $scope.closeRegister = function () {
+            let blurPage = document.querySelector('.blur');
+            if (blurPage) {
+                document.body.removeChild(blurPage);
+            }
+
+            $scope.showLogin = false;
+        };
+
+        $scope.login = function () {
+            let usernameInput = document.querySelector('.login input[type=text]').value;
+            let passwordInput = document.querySelector('.login input[type=password]').value;
+
+            let user = loginData.find(user => user.username === usernameInput && user.password === passwordInput);
+
+            if (user) {
+                alert(`Selamat datang, ${user.username}!`);
+                $scope.closeLogin();
+                document.getElementById('login-btn').classList.remove('fa-user');
+                document.getElementById('login-btn').classList.add('fa-sign-out-alt');
+                document.getElementById('login-btn').onclick = $scope.logout;
+            } else {
+                $scope.closeLogin();
+                $scope.openLogin();
+                alert('Username atau password salah. Silakan coba lagi.');
+            }
+        };
+
+        $scope.logout = function () {
+            document.getElementById('login-btn').classList.remove('fa-sign-out-alt');
+            document.getElementById('login-btn').classList.add('fa-user');
+            document.getElementById('login-btn').onclick = $scope.openLogin;
+            alert('Anda telah logout');
+        };
+
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                $scope.$apply(function () {
+                    $scope.closeLogin();
+                    $scope.closeRegister();
+                });
+            }
+        });
+
         // Book data
         $scope.books = data;
 
@@ -37,7 +182,7 @@ angular.module('myApp', [])
         $scope.searchText = '';
         $scope.searchResults = [];
 
-        $scope.searchBook = function() {
+        $scope.searchBook = function () {
             if ($scope.searchText.trim() === '') {
                 $scope.searchResults = [];
             } else {
@@ -45,27 +190,25 @@ angular.module('myApp', [])
             }
         };
 
-        $scope.goToBookDetails = function(bookuniqueID) {
-            window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus() ;
+        $scope.goToBookDetails = function (bookuniqueID) {
+            window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
         };
 
-        // When you want to submit 
-        $scope.preventSubmit = function(event) {
+        $scope.preventSubmit = function (event) {
             event.preventDefault();
         };
 
-        // When you click off or click "x"
-        $scope.clearSearch = function() {
+        $scope.clearSearch = function () {
             let autocompleteList = document.getElementById('autocomplete-list');
             autocompleteList.classList.add('hide');
-            setTimeout(function() {
-                $scope.$apply(function() {
+            setTimeout(function () {
+                $scope.$apply(function () {
                     $scope.searchResults = [];
                     autocompleteList.classList.remove('hide');
                 });
-            }, 200); // delay in milliseconds
+            }, 200);
         };
-        
+
         // Add to Cart
         $scope.cart = [];
         let featuredItems = document.querySelectorAll('section.featured .featured-slider .box .content button');
@@ -84,18 +227,29 @@ angular.module('myApp', [])
                     selected["qty"] = 1;
                     $scope.cart.push(selected);
                 }
-                
+
+                const handleDelete = (e) => {
+                    const key = +e.target.dataset.key;
+                    $scope.cart = $scope.cart.filter(item => item.id !== key);
+                    const cart = document.querySelector('section.cart > .content');
+                    cart.innerHTML = '';
+
+                    $scope.cart.forEach(item => {
+                        addToCart(item, handleDelete);
+                    });
+                };
+
                 const cart = document.querySelector('section.cart > .content');
                 cart.innerHTML = '';
 
                 $scope.cart.forEach(item => {
-                    addToCart(item);
+                    addToCart(item, handleDelete);
                 });
             });
         });
 
 
-        /*-------- swiper ---------- */
+        // Swiper List
         var swiper = new Swiper(".books-list", {
             loop: true,
             centeredSlides: true,
@@ -116,7 +270,7 @@ angular.module('myApp', [])
             },
         });
 
-        /*-------- featured section start ---------- */
+        // Swiper Featured
         var swiper = new Swiper(".featured-slider", {
             spaceBetween: 10,
             loop: true,
@@ -146,7 +300,7 @@ angular.module('myApp', [])
         });
 
 
-        /*-------- arrivals section start ---------- */
+        // Swiper Arrival
         var swiper = new Swiper(".arrivals-slider", {
             spaceBetween: 10,
             loop: true,
@@ -179,12 +333,14 @@ function createFeaturedBook(obj) {
     let author = document.createElement('h4');
     author.classList.add('author');
     author.textContent = obj.author;
+    author.onclick = function () { window.open(`https://www.google.com/search?q=${obj.author}`, '_blank').focus(); }; // Updated this line
     item.appendChild(author);
 
     let imgDiv = document.createElement('div');
     imgDiv.classList.add('image');
     let image = document.createElement('img');
     image.setAttribute('src', `${IMAGE_PATH}${obj.image}`);
+    image.onclick = function () { goToBookDetails(obj.uniqueID); };
     imgDiv.appendChild(image);
     item.appendChild(imgDiv);
 
@@ -201,6 +357,14 @@ function createFeaturedBook(obj) {
     item.appendChild(content);
 
     featuredSlider.appendChild(item);
+};
+
+function goToBookDetails(bookuniqueID) {
+    window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
+};
+
+function preventSubmit(event) {
+    event.preventDefault();
 };
 
 function createNewArrivalItems(obj, rowNum) {
@@ -251,7 +415,6 @@ function createPopUp(ptr, obj) {
     });
 }
 
-// Create Add Cart Notification
 function addCartNotification(obj) {
     let popUp = document.createElement('div');
     popUp.classList.add('add-cart-dialog');
@@ -262,9 +425,8 @@ function addCartNotification(obj) {
     setTimeout(() => document.body.removeChild(popUp), 1200);
 }
 
-
-// Add to Cart UI
-function addToCart(obj) {
+function addToCart(obj, handleDelete) {
+    const cartContainer = document.querySelector('section.cart');
     const cart = document.querySelector('section.cart > .content');
 
     addCartNotification(obj);
@@ -286,7 +448,26 @@ function addToCart(obj) {
     `;
     item.appendChild(desc);
 
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = `<i data-key="${obj.id}" class="fas fa-trash"></i>`;
+    deleteBtn.classList.add("trash-btn");
+    deleteBtn.addEventListener("click", handleDelete);
+
+
+    item.appendChild(deleteBtn);
     cart.appendChild(item);
+
+    if (!cartContainer.querySelector('.checkout')) {
+        const checkoutButton = document.createElement('button');
+        checkoutButton.classList.add('checkout');
+        checkoutButton.innerText = 'Checkout';
+
+        checkoutButton.addEventListener('click', () => {
+            console.log('Checkout button clicked');
+        });
+
+        cartContainer.appendChild(checkoutButton);
+    }
 }
 
 // Show Shopping Cart
@@ -304,12 +485,18 @@ hideCartBtn.addEventListener("click", () => {
     const cart = document.querySelector('section.cart');
     cart.classList.remove('slide-in-right');
     cart.classList.add('slide-out-right');
-    setTimeout(500, () => {
-        cart.classList.toggle('active');
-    });
+    setTimeout(() => {
+        cart.classList.remove('active');
+    }, 500);
 });
 
 const IMAGE_PATH = "./assets/manga/";
+
+// Login data
+const loginData = [{
+    username: "user",
+    password: "user"
+}];
 
 // Manga dataset
 const data = [{
@@ -319,7 +506,7 @@ const data = [{
     author: "Matono Anji",
     image: "ghost1.png",
     price: "9.99",
-    uniqueID: 141760, 
+    uniqueID: 141760,
 }, {
     id: 2,
     title: "100 Ghost Stories",
