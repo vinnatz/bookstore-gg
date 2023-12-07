@@ -15,6 +15,7 @@ angular.module('myApp', [])
         // Search Bar Disappear on Scroll with cart follows
         var navbar = document.querySelector('header .navbar');
         var cartIcon = document.querySelector('.fas.fa-shopping-cart');
+        var userIcon = document.querySelector('.fas.fa-user');
         var originalParent = cartIcon.parentElement;
 
         window.onscroll = function () {
@@ -24,7 +25,7 @@ angular.module('myApp', [])
                 navbar.appendChild(cartIcon);
             } else {
                 navbar.classList.remove('active');
-                originalParent.appendChild(cartIcon);
+                originalParent.insertBefore(cartIcon, userIcon);
             }
         };
 
