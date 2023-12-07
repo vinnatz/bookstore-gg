@@ -20,6 +20,8 @@ angular.module('myApp', [])
             } else {
                 document.querySelector('header .navbar').classList.remove('active');
             }
+
+
         };
 
         window.onload = function () {
@@ -326,7 +328,7 @@ angular.module('myApp', [])
     }]);
 
 function createFeaturedBook(obj) {
-    
+
     let featuredSlider = document.querySelector('section.featured > .swiper > .swiper-wrapper');
 
     let item = document.createElement('div');
@@ -335,14 +337,14 @@ function createFeaturedBook(obj) {
     let author = document.createElement('h4');
     author.classList.add('author');
     author.textContent = obj.author;
-    author.onclick = function() { window.open(`https://www.google.com/search?q=${obj.author}`, '_blank').focus(); }; // Updated this line
+    author.onclick = function () { window.open(`https://www.google.com/search?q=${obj.author}`, '_blank').focus(); }; // Updated this line
     item.appendChild(author);
 
     let imgDiv = document.createElement('div');
     imgDiv.classList.add('image');
     let image = document.createElement('img');
     image.setAttribute('src', `${IMAGE_PATH}${obj.image}`);
-    image.onclick = function() { goToBookDetails(obj.uniqueID); };
+    image.onclick = function () { goToBookDetails(obj.uniqueID); };
     imgDiv.appendChild(image);
     item.appendChild(imgDiv);
 
@@ -359,7 +361,7 @@ function createFeaturedBook(obj) {
     item.appendChild(content);
 
     featuredSlider.appendChild(item);
-    
+
 };
 
 function goToBookDetails(bookuniqueID) {
@@ -371,7 +373,7 @@ function preventSubmit(event) {
     event.preventDefault();
 };
 
-    
+
 function createNewArrivalItems(obj, rowNum) {
     let newArrivals = document.querySelector(`section.arrivals > .swiper.row${rowNum} > .swiper-wrapper`);
 
@@ -434,6 +436,7 @@ function addCartNotification(obj) {
 
 // Add to Cart UI
 function addToCart(obj, handleDelete) {
+    const cartContainer = document.querySelector('section.cart');
     const cart = document.querySelector('section.cart > .content');
 
     addCartNotification(obj);
@@ -461,8 +464,24 @@ function addToCart(obj, handleDelete) {
     deleteBtn.classList.add("trash-btn");
     deleteBtn.addEventListener("click", handleDelete);
 
+
     item.appendChild(deleteBtn);
     cart.appendChild(item);
+
+    // Check if the checkout button already exists within cartContainer
+    if (!cartContainer.querySelector('.checkout')) {
+        const checkoutButton = document.createElement('button');
+        checkoutButton.classList.add('checkout');
+        checkoutButton.innerText = 'Checkout';
+
+        checkoutButton.addEventListener('click', () => {
+            // Add your checkout logic here
+            // For example, redirect to a checkout page
+            console.log('Checkout button clicked');
+        });
+
+        cartContainer.appendChild(checkoutButton);
+    }
 }
 
 
@@ -481,9 +500,9 @@ hideCartBtn.addEventListener("click", () => {
     const cart = document.querySelector('section.cart');
     cart.classList.remove('slide-in-right');
     cart.classList.add('slide-out-right');
-    setTimeout(500, () => {
-        cart.classList.toggle('active');
-    });
+    setTimeout(() => {
+        cart.classList.remove('active');
+    }, 500);
 });
 
 const IMAGE_PATH = "./assets/manga/";
