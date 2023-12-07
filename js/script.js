@@ -13,20 +13,15 @@ angular.module('myApp', [])
         };
 
         // Search Bar Disappear on Scroll
-        var navbar = document.querySelector('header .navbar');
-        var userIcon = document.querySelector('.fas.fa-user');
-        var cartIcon = document.querySelector('.fas.fa-shopping-cart');
-        var originalParent = cartIcon.parentElement; // store the original parent element
-        
         window.onscroll = function () {
-            if (window.scrollY > navbar.offsetHeight) {
-                navbar.classList.add('active');
-                cartIcon.style.position = 'static'; // reset the position when it's in the navbar
-                navbar.appendChild(cartIcon); // add the cart icon to the navbar
+            $scope.searchform.classList.remove('active');
+            if (window.scrollY > 80) {
+                document.querySelector('header .navbar').classList.add('active');
             } else {
-                navbar.classList.remove('active');
-                originalParent.insertBefore(cartIcon, userIcon); // move the cart icon back to its original parent
+                document.querySelector('header .navbar').classList.remove('active');
             }
+
+
         };
 
         window.onload = function () {
@@ -43,8 +38,8 @@ angular.module('myApp', [])
             $anchorScroll();
         };
 
-        // Login form
-        // Open login
+        // Login/Register Forms
+        // Open Register
         $scope.openLogin = function () {
             let blurPage = document.createElement('div');
             blurPage.classList.add('blur');
@@ -77,7 +72,7 @@ angular.module('myApp', [])
             document.body.appendChild(blurPage);
 
             $scope.showLogin = true;
-            // Event handler for login form
+
             document.querySelector('.login').addEventListener('submit', function (event) {
                 event.preventDefault();
                 $scope.login();
@@ -140,7 +135,6 @@ angular.module('myApp', [])
             $scope.showLogin = false;
         };
 
-        // Event handler for login form
         $scope.login = function () {
             let usernameInput = document.querySelector('.login input[type=text]').value;
             let passwordInput = document.querySelector('.login input[type=password]').value;
@@ -160,7 +154,6 @@ angular.module('myApp', [])
             }
         };
 
-        // Event handler for logout
         $scope.logout = function () {
             document.getElementById('login-btn').classList.remove('fa-sign-out-alt');
             document.getElementById('login-btn').classList.add('fa-user');
@@ -168,7 +161,6 @@ angular.module('myApp', [])
             alert('Anda telah logout');
         };
 
-        // Event listener for the Escape key
         window.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 $scope.$apply(function () {
@@ -177,9 +169,6 @@ angular.module('myApp', [])
                 });
             }
         });
-        // End of Login Form
-
-
 
         // Book data
         $scope.books = data;
@@ -200,12 +189,10 @@ angular.module('myApp', [])
             window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
         };
 
-        // When you want to submit 
         $scope.preventSubmit = function (event) {
             event.preventDefault();
         };
 
-        // When you click off or click "x"
         $scope.clearSearch = function () {
             let autocompleteList = document.getElementById('autocomplete-list');
             autocompleteList.classList.add('hide');
@@ -214,7 +201,7 @@ angular.module('myApp', [])
                     $scope.searchResults = [];
                     autocompleteList.classList.remove('hide');
                 });
-            }, 200); // delay in milliseconds
+            }, 200);
         };
 
         // Add to Cart
@@ -257,7 +244,7 @@ angular.module('myApp', [])
         });
 
 
-        /*-------- swiper ---------- */
+        // Swiper List
         var swiper = new Swiper(".books-list", {
             loop: true,
             centeredSlides: true,
@@ -278,7 +265,7 @@ angular.module('myApp', [])
             },
         });
 
-        /*-------- featured section start ---------- */
+        // Swiper Featured
         var swiper = new Swiper(".featured-slider", {
             spaceBetween: 10,
             loop: true,
@@ -308,7 +295,7 @@ angular.module('myApp', [])
         });
 
 
-        /*-------- arrivals section start ---------- */
+        // Swiper Arrival
         var swiper = new Swiper(".arrivals-slider", {
             spaceBetween: 10,
             loop: true,
@@ -333,7 +320,6 @@ angular.module('myApp', [])
     }]);
 
 function createFeaturedBook(obj) {
-
     let featuredSlider = document.querySelector('section.featured > .swiper > .swiper-wrapper');
 
     let item = document.createElement('div');
@@ -366,18 +352,15 @@ function createFeaturedBook(obj) {
     item.appendChild(content);
 
     featuredSlider.appendChild(item);
-
 };
 
 function goToBookDetails(bookuniqueID) {
     window.open(`https://myanimelist.net/manga/${bookuniqueID}`, '_blank').focus();
 };
 
-// When you want to submit 
 function preventSubmit(event) {
     event.preventDefault();
 };
-
 
 function createNewArrivalItems(obj, rowNum) {
     let newArrivals = document.querySelector(`section.arrivals > .swiper.row${rowNum} > .swiper-wrapper`);
@@ -427,7 +410,6 @@ function createPopUp(ptr, obj) {
     });
 }
 
-// Create Add Cart Notification
 function addCartNotification(obj) {
     let popUp = document.createElement('div');
     popUp.classList.add('add-cart-dialog');
@@ -438,8 +420,6 @@ function addCartNotification(obj) {
     setTimeout(() => document.body.removeChild(popUp), 1200);
 }
 
-
-// Add to Cart UI
 function addToCart(obj, handleDelete) {
     const cartContainer = document.querySelector('section.cart');
     const cart = document.querySelector('section.cart > .content');
@@ -463,7 +443,6 @@ function addToCart(obj, handleDelete) {
     `;
     item.appendChild(desc);
 
-    // Create delete button with trash bin icon
     let deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = `<i data-key="${obj.id}" class="fas fa-trash"></i>`;
     deleteBtn.classList.add("trash-btn");
@@ -473,22 +452,18 @@ function addToCart(obj, handleDelete) {
     item.appendChild(deleteBtn);
     cart.appendChild(item);
 
-    // Check if the checkout button already exists within cartContainer
     if (!cartContainer.querySelector('.checkout')) {
         const checkoutButton = document.createElement('button');
         checkoutButton.classList.add('checkout');
         checkoutButton.innerText = 'Checkout';
 
         checkoutButton.addEventListener('click', () => {
-            // Add your checkout logic here
-            // For example, redirect to a checkout page
             console.log('Checkout button clicked');
         });
 
         cartContainer.appendChild(checkoutButton);
     }
 }
-
 
 // Show Shopping Cart
 const shoppingCartBtn = document.querySelector('a.fas.fa-shopping-cart');
@@ -512,6 +487,7 @@ hideCartBtn.addEventListener("click", () => {
 
 const IMAGE_PATH = "./assets/manga/";
 
+// Login data
 const loginData = [{
     username: "user",
     password: "user"
