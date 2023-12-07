@@ -13,15 +13,20 @@ angular.module('myApp', [])
         };
 
         // Search Bar Disappear on Scroll
+        var navbar = document.querySelector('header .navbar');
+        var userIcon = document.querySelector('.fas.fa-user');
+        var cartIcon = document.querySelector('.fas.fa-shopping-cart');
+        var originalParent = cartIcon.parentElement; // store the original parent element
+        
         window.onscroll = function () {
-            $scope.searchform.classList.remove('active');
-            if (window.scrollY > 80) {
-                document.querySelector('header .navbar').classList.add('active');
+            if (window.scrollY > navbar.offsetHeight) {
+                navbar.classList.add('active');
+                cartIcon.style.position = 'static'; // reset the position when it's in the navbar
+                navbar.appendChild(cartIcon); // add the cart icon to the navbar
             } else {
-                document.querySelector('header .navbar').classList.remove('active');
+                navbar.classList.remove('active');
+                originalParent.insertBefore(cartIcon, userIcon); // move the cart icon back to its original parent
             }
-
-
         };
 
         window.onload = function () {
